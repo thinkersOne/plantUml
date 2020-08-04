@@ -1,0 +1,14 @@
+@startuml
+actor "调度员" as dispatcher
+actor "数据员" as data
+actor "财务" as finance
+participant "TMS系统" as tms
+autonumber "."
+
+dispatcher->tms:新建油卡充值单( 录入网点，充值明细(项目，油卡，充值金额等))
+data->tms:审核油卡充值单-(审核后不能修改,只有审核后的单据,才能生成付款单)
+data->tms:新建油卡充值付款单(选择多个油卡充值单生成付款单，录入供应商(自动带出付款信息))
+data->tms:审批油卡充值付款单-发起审批流
+finance->tms:付款(油卡充值付款单)-确认已付款(上传付款凭证),同步更新充值单付款状态
+finance->tms:收发票(油卡充值付款单)-确认已收发票(上传发票)
+@enduml 

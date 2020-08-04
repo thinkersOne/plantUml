@@ -1,0 +1,13 @@
+@startuml
+actor "调度员" as dispatcher
+actor "财务" as finance
+participant "TMS系统" as tms
+autonumber "."
+
+dispatcher->tms: 新增停车单、违章单信息，并上传停车单、违章单附件图片信息
+dispatcher->tms:审核停车单、违章单信息及上传是否正确
+dispatcher->tms:新建停车、违章付款单(选择多个停车、违章生成付款单，录入供应商(自动带出付款信息))
+dispatcher->tms:审批停车、违章付款单-发起审批流
+finance->tms:付款(停车、违章付款单)-确认已付款(上传付款凭证),同步更新停车、违章付款状态
+finance->tms:收发票(停车、违章付款单)-确认已收发票(上传发票)
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+actor "现场人员" as dispatcher
+actor "财务" as finance
+participant "TMS系统" as tms
+autonumber "."
+
+dispatcher->tms: 新增维保信息、维修明细/保养明细信息，上传维保图片信息
+dispatcher->tms:审核维保信息、维修明细/保养明细信息及上传附件是否填写正确
+dispatcher->tms:新建维保付款单(选择多个维保生成付款单，录入供应商(自动带出付款信息))
+dispatcher->tms:审批维保付款单-发起审批流
+finance->tms:付款(维保付款单)-确认已付款(上传付款凭证),同步更新维保付款状态
+finance->tms:收发票(维保付款单)-确认已收发票(上传发票)
+@enduml

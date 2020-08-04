@@ -1,0 +1,13 @@
+@startuml
+actor "总部车管员" as vehicler
+actor "财务" as finance
+participant "TMS系统" as tms
+autonumber "."
+
+vehicler->tms: 新增交强险、商业险信息，上传交强险、商业险附件合同信息
+vehicler->tms:审核交强险、商业险信息及上传附件是否填写正确
+vehicler->tms:新建交强险、商业险付款单(选择多个交强险、商业险生成付款单，录入供应商(自动带出付款信息))
+vehicler->tms:审批交强险、商业险付款单-发起审批流
+finance->tms:付款(交强险、商业险付款单)-确认已付款(上传付款凭证),同步更新交强险、商业险付款状态
+finance->tms:收发票(交强险、商业险付款单)-确认已收发票(上传发票)
+@enduml

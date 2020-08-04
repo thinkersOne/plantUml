@@ -1,0 +1,13 @@
+@startuml
+actor "总部车管员" as vehicler
+actor "财务" as finance
+participant "TMS系统" as tms
+autonumber "."
+
+vehicler->tms: 新增车辆、行驶证、营运证、产证及证件图片附件信息
+vehicler->tms:审核车辆信息，行驶证、营运证、产证证件是否上传正确
+vehicler->tms:新建车辆证件付款单(选择多个车辆证件生成付款单，录入供应商(自动带出付款信息))
+vehicler->tms:审批车辆证件付款单-发起审批流
+finance->tms:付款(车辆证件付款单)-确认已付款(上传付款凭证),同步更新车辆证件付款状态
+finance->tms:收发票(车辆证件付款单)-确认已收发票(上传发票)
+@enduml 
